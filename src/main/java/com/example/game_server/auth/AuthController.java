@@ -22,6 +22,17 @@ public class AuthController {
     @PostMapping("/register")
     public AuthResponse register(@RequestBody AuthRequest authRequest) {
         users.put(authRequest.getUsername(), authRequest.getPassword());
-        //String token = jwtUtil.
+        String token = jwtUtil.generateToken(authRequest.getUsername());
+        return new AuthResponse(token);
+    }
+
+    @PostMapping("/login")
+    public AuthResponse login(@RequestBody AuthRequest request) {
+        String stored = users.get(request.getUsername());
+        if (stored == null || !stored.equals(request.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
+        }
+        String token = jwtUtil.generateToken(request.getUsername());
+        return new AuthResponse(token);
     }
 }
