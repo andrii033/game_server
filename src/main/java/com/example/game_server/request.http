@@ -1,0 +1,32 @@
+
+### Register
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "user"
+}
+
+### Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "user"
+}
+
+
+### WebSocket move example
+WEBSOCKET ws://localhost:8080/ws/game?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzUyNjg4ODQyLCJleHAiOjE3NTI3NzUyNDJ9._-RNcIZ0SbSSheXJXCjkVmSgusOj4rTnCAb-6EWDb-g
+
+< {
+{
+  "type": "move",
+  "data": {
+    "x": 2,
+    "y": 1
+  }
+}
+
